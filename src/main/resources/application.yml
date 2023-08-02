@@ -7,7 +7,7 @@ mj:
     user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36
     user-wss: true
   task-store:
-    type: redis
+    type: in_memory
     timeout: 30d
   translate-way: baidu
   queue:
@@ -17,16 +17,17 @@ mj:
   baidu-translate:
     appid: xxx
     app-secret: xxx
+    # proxy:
+    #  host: 114.55.7.220
+    # port: 20171
+  aliyun:
+    access-key-id: xxx
+    access-key-secret: xxx
+    uid: xxx
+    oss-bucket: prod-midjourney
 spring:
   redis:
     host: xxx
     port: 6379
     username: xxx
-    password: xxx
     timeout: 3000
-aliyun:
-    accessKeyId: xxx
-    accessKeySecret: xxx
-    uid: xxx
-    oss-bucket: xxx
-

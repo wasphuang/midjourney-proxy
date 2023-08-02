@@ -34,11 +34,13 @@ public class OSSFileClient {
     private ProxyProperties properties;
 
     // Endpoint以杭州为例，其它Region请按实际情况填写。
-    private final String endpoint = "oss-cn-hangzhou.aliyuncs.com";
-    private final String bucketName = properties.getAliyunConfig().getOssBucket();
-    private final String ossFilePrefix = "https://%s.oss-cn-hangzhou.aliyuncs.com/%s";
+    private  final String endpoint = "oss-cn-hangzhou.aliyuncs.com";
+    private  String bucketName = null;
+    private  final String ossFilePrefix = "https://%s.oss-cn-hangzhou.aliyuncs.com/%s";
 
     public String uploadImage(String imageURL) {
+        bucketName = properties.getAliyun().getOssBucket();
+
         HttpURLConnection connection = null;
         OSS ossClient = null;
         try {

@@ -26,12 +26,12 @@ public class StsService {
     // STS接入地址，例如sts.cn-hangzhou.aliyuncs.com。
     private final String endpoint = "sts.cn-hangzhou.aliyuncs.com";
     // 填写步骤1生成的RAM用户访问密钥AccessKey ID和AccessKey Secret。
-    private final String accessKeyId = this.properties.getAliyunConfig().getAccessKeyId();
-    private final String accessKeySecret = this.properties.getAliyunConfig().getAccessKeySecret();
+    private String accessKeyId = null;
+    private String accessKeySecret = null;
     // 填写步骤3获取的角色ARN。
-    private final String roleArn = "acs:ram::"+this.properties.getAliyunConfig().getUid()+":role/ramosstest";
+    private String roleArn = null;
     // 自定义角色会话名称，用来区分不同的令牌，例如可填写为SessionTest。
-    private final String roleSessionName = "threeing";
+    private String roleSessionName = "threeing";
     // 设置临时访问凭证的有效时间为3600秒，1小时，临时Token最多只能设置1H
     Long durationSeconds = 3600L;
     // 如果policy为空，则用户将获得该角色下所有权限。
@@ -55,11 +55,6 @@ public class StsService {
     private Date ossExpiration = null;
 
 
-    public StsService(){//初始化临时Token等值
-        initToken();
-    }
-
-
     public OssToken getOssToken() {
         checkOssExpriation();
         return this.token;
@@ -71,13 +66,18 @@ public class StsService {
         }
 
         Date current = new Date();
-        if((this.ossExpiration.getTime() - current.getTime())/1000<600){//小于10分钟内重新获取token
+        if(this.ossExpiration == null || (this.ossExpiration.getTime() - current.getTime())/1000<600){//小于10分钟内重新获取token
             initToken();
         }
     }
 
     private void initToken() {
         try {
+            accessKeyId = this.properties.getAliyun().getAccessKeyId();
+            accessKeySecret = this.properties.getAliyun().getAccessKeySecret();
+            // 填写步骤3获取的角色ARN。
+            roleArn = "acs:ram::"+this.properties.getAliyun().getUid()+":role/ramosstest";
+
             // 添加endpoint。适用于Java SDK 3.12.0及以上版本。
             DefaultProfile.addEndpoint(regionId, product, endpoint);
             // 添加endpoint。适用于Java SDK 3.12.0以下版本。
