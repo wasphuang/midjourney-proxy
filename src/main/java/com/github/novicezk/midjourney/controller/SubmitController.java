@@ -5,6 +5,7 @@ import cn.hutool.core.util.RandomUtil;
 import com.github.novicezk.midjourney.Constants;
 import com.github.novicezk.midjourney.ProxyProperties;
 import com.github.novicezk.midjourney.ReturnCode;
+import com.github.novicezk.midjourney.aliyun.OSSFileClient;
 import com.github.novicezk.midjourney.dto.BaseSubmitDTO;
 import com.github.novicezk.midjourney.dto.SubmitBlendDTO;
 import com.github.novicezk.midjourney.dto.SubmitChangeDTO;
@@ -31,6 +32,7 @@ import eu.maxschuster.dataurl.IDataUrlSerializer;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,6 +53,8 @@ public class SubmitController {
 	private final TaskStoreService taskStoreService;
 	private final ProxyProperties properties;
 	private final TaskService taskService;
+	@Autowired
+	private OSSFileClient ossFileClient;
 
 	@ApiOperation(value = "提交Imagine任务")
 	@PostMapping("/imagine")

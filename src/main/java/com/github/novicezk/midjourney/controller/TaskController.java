@@ -1,6 +1,7 @@
 package com.github.novicezk.midjourney.controller;
 
 import cn.hutool.core.comparator.CompareUtil;
+import com.github.novicezk.midjourney.aliyun.OSSFileClient;
 import com.github.novicezk.midjourney.dto.TaskConditionDTO;
 import com.github.novicezk.midjourney.service.TaskStoreService;
 import com.github.novicezk.midjourney.support.Task;
@@ -9,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +31,8 @@ import java.util.Set;
 public class TaskController {
 	private final TaskStoreService taskStoreService;
 	private final TaskQueueHelper taskQueueHelper;
+	@Autowired
+	private OSSFileClient ossFileClient;
 
 	@ApiOperation(value = "查询所有任务")
 	@GetMapping("/list")
