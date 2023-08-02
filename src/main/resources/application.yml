@@ -27,7 +27,8 @@ mj:
     oss-bucket: prod-midjourney
 spring:
   redis:
-    host: r-bp1bmw3m4th8eyl8vmpd.redis.rds.aliyuncs.com
+    host: xxx
     port: 6379
-    password: threeing_admin:6ehLsQzi6
+    password: xxx
     timeout: 3000
+
