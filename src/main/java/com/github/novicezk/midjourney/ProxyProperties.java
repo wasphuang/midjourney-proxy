@@ -43,6 +43,10 @@ public class ProxyProperties {
 	 * 中文prompt翻译方式.
 	 */
 	private TranslateWay translateWay = TranslateWay.NULL;
+
+
+	private AliyunConfig aliyunConfig = new AliyunConfig();
+
 	/**
 	 * 接口密钥，为空不启用鉴权；调用接口时需要加请求头 mj-api-secret.
 	 */
@@ -198,4 +202,15 @@ public class ProxyProperties {
 		 */
 		private int timeoutMinutes = 5;
 	}
+
+	@Data
+	public static class AliyunConfig {
+		private String accessKeyId;
+		private String accessKeySecret;
+		private String uid;
+		private String ossBucket;
+
+	}
+
+
 }
