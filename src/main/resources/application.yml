@@ -1,0 +1,36 @@
+mj:
+  discord:
+    guild-id: xxx
+    channel-id: xxx
+    user-token: xxx
+    session-id: xxx
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36
+    user-wss: true
+  task-store:
+    type: redis
+    timeout: 30d
+  translate-way: baidu
+  #api-secret: 94d15e1
+  queue:
+    timeout-minutes: 5
+    core-size: 3
+    queue-size: 10
+  baidu-translate:
+    appid: xxx
+    app-secret: xxx
+    # proxy:
+    #  host: 114.55.7.220
+    # port: 20171
+spring:
+  redis:
+    host: xxx
+    port: 6379
+    username: xxx
+    password: xxx
+    timeout: 3000
+aliyun:
+    accessKeyId: xxx
+    accessKeySecret: xxx
+    uid: xxx
+    oss-bucket: xxx
+
