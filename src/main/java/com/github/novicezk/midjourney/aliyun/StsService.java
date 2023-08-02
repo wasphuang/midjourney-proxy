@@ -22,10 +22,10 @@ public class StsService {
     // STS接入地址，例如sts.cn-hangzhou.aliyuncs.com。
     private final String endpoint = "sts.cn-hangzhou.aliyuncs.com";
     // 填写步骤1生成的RAM用户访问密钥AccessKey ID和AccessKey Secret。
-    private final String accessKeyId = "LTAI5tQtMCjLVWbnNGPDSSkP";
-    private final String accessKeySecret = "MKDtu2RoX4QRvRAsnz2LB92iP0aDnC";
+    private final String accessKeyId = "";
+    private final String accessKeySecret = "";
     // 填写步骤3获取的角色ARN。
-    private final String roleArn = "acs:ram::31426079:role/ramosstest";
+    private final String roleArn = "";
     // 自定义角色会话名称，用来区分不同的令牌，例如可填写为SessionTest。
     private final String roleSessionName = "threeing";
     // 设置临时访问凭证的有效时间为3600秒，1小时，临时Token最多只能设置1H
