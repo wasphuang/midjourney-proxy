@@ -36,7 +36,7 @@ public class OSSFileClient {
     // Endpoint以杭州为例，其它Region请按实际情况填写。
     private  final String endpoint = "oss-cn-hangzhou.aliyuncs.com";
     private  String bucketName = null;
-    private  final String ossFilePrefix = "https://%s.oss-cn-hangzhou.aliyuncs.com/%s";
+    private  final String ossFilePrefix = "https://aimage.threeing.cn/%s";
 
     public String uploadImage(String imageURL) {
         bucketName = properties.getAliyun().getOssBucket();
@@ -80,7 +80,7 @@ public class OSSFileClient {
                 // putObjectRequest.setMetadata(metadata);
                 // 上传文件。
                 ossClient.putObject(putObjectRequest);
-                return String.format(ossFilePrefix,bucketName,fileName);
+                return String.format(ossFilePrefix,fileName);
             } else {
                 throw new Exception("图片下载失败，错误码：" + responseCode);
             }
