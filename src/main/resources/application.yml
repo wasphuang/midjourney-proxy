@@ -10,7 +10,6 @@ mj:
     type: redis
     timeout: 30d
   translate-way: baidu
-  #api-secret: 94d15e1
   queue:
     timeout-minutes: 5
     core-size: 3
@@ -18,9 +17,6 @@ mj:
   baidu-translate:
     appid: xxx
     app-secret: xxx
-    # proxy:
-    #  host: 114.55.7.220
-    # port: 20171
 spring:
   redis:
     host: xxx
