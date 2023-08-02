@@ -45,7 +45,11 @@ public class TaskController {
 	@ApiOperation(value = "指定ID获取任务")
 	@GetMapping("/{id}/fetch")
 	public Task fetch(@ApiParam(value = "任务ID") @PathVariable String id) {
-		return this.taskStoreService.get(id);
+		Task task  = this.taskStoreService.get(id);
+		String imageURL = task.getImageUrl();
+		imageURL = ossFileClient.uploadImage(imageURL);
+		task.setImageUrl(imageURL);
+		return task;
 	}
 
 	@ApiOperation(value = "查询任务队列")
