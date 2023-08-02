@@ -9,6 +9,7 @@ import com.aliyun.oss.common.auth.STSAssumeRoleSessionCredentialsProvider;
 import com.aliyun.oss.model.OSSObjectSummary;
 import com.aliyun.oss.model.ObjectListing;
 import com.aliyun.oss.model.PutObjectRequest;
+import com.aliyun.oss.model.PutObjectResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.Md5Crypt;
 import org.apache.tomcat.util.security.MD5Encoder;
@@ -32,6 +33,7 @@ public class OSSFileClient {
     // Endpoint以杭州为例，其它Region请按实际情况填写。
     private final String endpoint = "oss-cn-hangzhou.aliyuncs.com";
     private final String bucketName = "prod-midjourney";
+    private final String ossFilePrefix = "https://%s.oss-cn-hangzhou.aliyuncs.com/%s";
 
     public String uploadImage(String imageURL) {
         HttpURLConnection connection = null;
@@ -73,6 +75,7 @@ public class OSSFileClient {
                 // putObjectRequest.setMetadata(metadata);
                 // 上传文件。
                 ossClient.putObject(putObjectRequest);
+                return String.format(ossFilePrefix,bucketName,fileName);
             } else {
                 throw new Exception("图片下载失败，错误码：" + responseCode);
             }
@@ -93,7 +96,7 @@ public class OSSFileClient {
 
     public static void main(String[] args) throws Exception {
         StsService stsService = new StsService();
-
+        String ossFilePrefix = "https://%s.oss-cn-hangzhou.aliyuncs.com/%s";
         // Endpoint以杭州为例，其它Region请按实际情况填写。
         String endpoint = "oss-cn-hangzhou.aliyuncs.com";
         // 填写步骤五获取的临时访问密钥AccessKey ID和AccessKey Secret，非阿里云账号AccessKey ID和AccessKey Secret。
@@ -135,6 +138,7 @@ public class OSSFileClient {
 
             // 上传文件。
             ossClient.putObject(putObjectRequest);
+            System.out.println(String.format(ossFilePrefix,"prod-midjourney",fileName));
 
             // 关闭OSSClient。
             ossClient.shutdown();

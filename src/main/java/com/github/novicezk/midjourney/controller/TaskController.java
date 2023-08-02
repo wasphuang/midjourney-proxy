@@ -47,8 +47,12 @@ public class TaskController {
 	public Task fetch(@ApiParam(value = "任务ID") @PathVariable String id) {
 		Task task  = this.taskStoreService.get(id);
 		String imageURL = task.getImageUrl();
-		imageURL = ossFileClient.uploadImage(imageURL);
-		task.setImageUrl(imageURL);
+		if(imageURL != null);{
+			imageURL = ossFileClient.uploadImage(imageURL);
+			if(imageURL !=null){
+				task.setImageUrl(imageURL);
+			}
+		}
 		return task;
 	}
 
