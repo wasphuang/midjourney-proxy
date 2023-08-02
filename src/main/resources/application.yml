@@ -3,7 +3,7 @@ mj:
     guild-id: xxx
     channel-id: xxx
     user-token: xxx
-    session-id: xxx
+    session-id: 94d15ef6d66a8c1361b07a8379c8ab1
     user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36
     user-wss: true
   task-store:
