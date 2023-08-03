@@ -38,7 +38,7 @@ public class OSSFileClient {
     private  String bucketName = null;
     private  final String ossFilePrefix = "https://aimage.threeing.cn/%s";
 
-    public String uploadImage(String imageURL) {
+    public String uploadImage(String imageURL,String taskId) {
         bucketName = properties.getAliyun().getOssBucket();
 
         HttpURLConnection connection = null;
@@ -68,8 +68,8 @@ public class OSSFileClient {
                 byte[] imageBytes = outputStream.toByteArray();
                 outputStream.close();
                 inputStream.close();
-                String imageName = DigestUtils.md5DigestAsHex(imageURL.getBytes());
-                String fileName = String.format("%s/%s.jpg", DateUtil.format(new Date(),"yyyyMMdd"), imageName);
+                //String imageName = DigestUtils.md5DigestAsHex(imageURL.getBytes());
+                String fileName = String.format("%s/%s.jpg", DateUtil.format(new Date(),"yyyyMMdd"), taskId);
                 // 将本地文件exampletest.txt上传至目标存储空间examplebucket下的src目录。
                 PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName, new ByteArrayInputStream(imageBytes));
                 // ObjectMetadata metadata = new ObjectMetadata();

@@ -48,7 +48,7 @@ public class TaskController {
 		Task task  = this.taskStoreService.get(id);
 		String imageURL = task.getImageUrl();
 		if(imageURL != null && imageURL.indexOf("threeing.cn") == -1){
-			imageURL = ossFileClient.uploadImage(imageURL);
+			imageURL = ossFileClient.uploadImage(imageURL,id);
 			if(imageURL !=null){
 				task.setImageUrl(imageURL);
 			}
