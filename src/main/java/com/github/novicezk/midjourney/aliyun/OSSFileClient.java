@@ -69,7 +69,8 @@ public class OSSFileClient {
                 outputStream.close();
                 inputStream.close();
                 //String imageName = DigestUtils.md5DigestAsHex(imageURL.getBytes());
-                String fileName = String.format("%s/%s.png", DateUtil.format(new Date(),"yyyyMMdd"), taskId);
+                String imageName  = String.valueOf(taskId) + System.currentTimeMillis();
+                String fileName = String.format("%s/%s.png", DateUtil.format(new Date(),"yyyyMMdd"), imageName);
                 // 将本地文件exampletest.txt上传至目标存储空间examplebucket下的src目录。
                 PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName, new ByteArrayInputStream(imageBytes));
                 // ObjectMetadata metadata = new ObjectMetadata();
