@@ -58,7 +58,7 @@ public class TaskController {
 		if(prompt.startsWith("https")){//有垫图
 			String[] dataURL = prompt.split(" ");
 			for (String s : dataURL) {
-				if(s.startsWith("https")){
+				if(s.startsWith("https") && s.indexOf("threeing.cn") == -1 ){
 					String _diantuURL = ossFileClient.uploadImage(s,id);
 					if(_diantuURL !=null){
 						task.setPrompt(prompt.replaceAll(s,_diantuURL));
