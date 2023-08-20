@@ -46,24 +46,26 @@ public class TaskController {
 	@GetMapping("/{id}/fetch")
 	public Task fetch(@ApiParam(value = "任务ID") @PathVariable String id) {
 		Task task  = this.taskStoreService.get(id);
-		String imageURL = task.getImageUrl();
-		if(imageURL != null && imageURL.indexOf("threeing.cn") == -1){//处理图片地址
-			imageURL = ossFileClient.uploadImage(imageURL,id);
-			if(imageURL !=null){
-				task.setImageUrl(imageURL);
+		if(task != null){
+			String imageURL = task.getImageUrl();
+			if(imageURL != null && imageURL.indexOf("threeing.cn") == -1){//处理图片地址
+				imageURL = ossFileClient.uploadImage(imageURL,id);
+				if(imageURL !=null){
+					task.setImageUrl(imageURL);
+				}
 			}
-		}
 
-		String prompt = task.getPrompt();
-		if(prompt.startsWith("https")){//有垫图
-			String[] dataURL = prompt.split(" ");
-			for (String s : dataURL) {
-				if(s.startsWith("https") && s.indexOf("threeing.cn") == -1 ){
-					String _diantuURL = ossFileClient.uploadImage(s,id);
-					if(_diantuURL !=null){
-						task.setPrompt(prompt.replaceAll(s,_diantuURL));
-						task.setPromptEn(task.getPromptEn().replaceAll(s,_diantuURL));
-						task.setDescription(task.getDescription().replaceAll(s,_diantuURL));
+			String prompt = task.getPrompt();
+			if(prompt.startsWith("https") && prompt.indexOf("threeing.cn") == -1 ){//有垫图
+				String[] dataURL = prompt.split(" ");
+				for (String s : dataURL) {
+					if(s.startsWith("https")){
+						String _diantuURL = ossFileClient.uploadImage(s,id);
+						if(_diantuURL !=null){
+							task.setPrompt(prompt.replaceAll(s,_diantuURL));
+							task.setPromptEn(task.getPromptEn().replaceAll(s,_diantuURL));
+							task.setDescription(task.getDescription().replaceAll(s,_diantuURL));
+						}
 					}
 				}
 			}
