@@ -56,7 +56,7 @@ public class TaskController {
 			}
 
 			String prompt = task.getPrompt();
-			if(prompt.startsWith("https") && prompt.indexOf("threeing.cn") == -1 ){//有垫图
+			if(prompt != null && prompt.startsWith("https") && prompt.indexOf("threeing.cn") == -1 ){//有垫图
 				String[] dataURL = prompt.split(" ");
 				for (String s : dataURL) {
 					if(s.startsWith("https")){
