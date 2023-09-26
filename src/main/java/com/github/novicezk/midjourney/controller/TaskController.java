@@ -62,9 +62,9 @@ public class TaskController {
 					if(s.startsWith("https")){
 						String _diantuURL = ossFileClient.uploadImage(s,id);
 						if(_diantuURL !=null){
-							task.setPrompt(prompt.replaceAll(s,_diantuURL));
-							task.setPromptEn(task.getPromptEn().replaceAll(s,_diantuURL));
-							task.setDescription(task.getDescription().replaceAll(s,_diantuURL));
+							task.setPrompt(prompt.replace(s,_diantuURL));
+							task.setPromptEn(task.getPromptEn().replace(s,_diantuURL));
+							task.setDescription(task.getDescription().replace(s,_diantuURL));
 						}
 					}
 				}
